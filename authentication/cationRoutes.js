@@ -24,7 +24,42 @@ router.post('/register', (req, res) => {
     });
 });
 
+router.post('/login', (req, res) => {
+    let { username, password } = req.body;
 
+    cationHelpers.findBy({ username })
+    .first()
+    .then(user => {
+        if( user && bcryptjs.compareSync(password, user.password)){
+            // making a token..
+            // 1 - Setting the payload
+            const payload = {
+                sub: user.id,
+                username: user.username,
+                roles: ['seller'],
+            }
+            // 2 - Decide config (like exp data)
+            const options = {
+                expiresIn: 60,
+            }
+            // 3 - Build & Sign the token.
+            const token = jwt.sign(
+                payload,
+                process.env.JWT_SECRET || 'secret',
+                options,
+            )
 
+            res.json({
+                message: 'Token is included in this response.',
+                token
+            })
+        } else {
+            res.status(401).json({ message: 'Invalid credentials' });
+        }
+    })
+    .catch(error => {
+        res.status(500).json(error);
+    });
+});
 
 module.exports = router;
