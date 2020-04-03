@@ -62,4 +62,7 @@ router.post('/login', (req, res) => {
     });
 });
 
+// Logout functionality needs to go here...
+
+
 module.exports = router;

@@ -3,6 +3,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 
 const authRoutes = require('../authentication/cationRoutes');
+const entryRoutes = require('../entries/entryRoutes');
 
 const server = express();
 
@@ -11,6 +12,7 @@ server.use(helmet());
 server.use(cors());
 
 server.use('/api/authentication', authRoutes);
+server.use('/api/entries', entryRoutes);
 
 server.get('/', (req, res) => {
     res.send('Yeh');
