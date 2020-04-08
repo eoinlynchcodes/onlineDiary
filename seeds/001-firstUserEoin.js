@@ -5,7 +5,7 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('diaryEntry').insert([
-        {id: 1, user: 'eoinlynch', dearDiary: 'Today I ran to the river.', whoItWasWith: 'I was alone.', whenItHappened: 'April 3 2020' }
+        {id: 1, userID: 1, dearDiary: "Wrote some code today", whoItWasWith: "Alone", whenItHappened: "April 7 2020"}
       ]);
     });
 };

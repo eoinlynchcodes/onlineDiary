@@ -1,26 +1,35 @@
 const router = require('express').Router();
 
-// const entryHelpers = require('./entryHelpers');
-
+const entryHelpers = require('./entryHelpers');
 
 router.get('/', (req, res) => {
     res.status(200).json({ message: "hello from entry routes"});
 });
 
-// router.post('/diaryEntry', (req, res) => {
-// let { dearDiary, whoItWasWith, whenItHappened } = req.body;
+router.get('/all', (req, res) => {
+    entryHelpers.getAll()
+    .then(response => {
+        res.status(200).json(response);
+    })
+    .catch(error => {
+        res.status(500).json(error);
+    })
+});
 
-// entryHelpers.addEntry({
-//     dearDiary,
-//     whoItWasWith,
-//     whenItHappened
-// })
-// .then(newEntry => {
-//     res.status(201).json(newEntry);
-// })
-// .catch(error => {
-//     res.status(500).json(error);
-// });
-// });
+router.post('/diaryentry', (req, res) => {
+let { userID, dearDiary, whoItWasWith, whenItHappened } = req.body;
+entryHelpers.addEntry({
+    userID,
+    dearDiary,
+    whoItWasWith,
+    whenItHappened
+})
+.then(newEntry => {
+    res.status(201).json(newEntry);
+})
+.catch(error => {
+    res.status(500).json(error);
+});
+});
 
 module.exports = router;

@@ -62,6 +62,21 @@ router.post('/login', (req, res) => {
     });
 });
 
+
+function generateToken(user){
+    const payload = {
+        subject: user.id,
+        username: user.username,
+    };
+    const options = {
+        expiresIn: '1d',
+    };
+
+    return jwt.sign(payload, secrets.JWT_SECRET, options);
+
+}
+
+
 // Logout functionality needs to go here...
 
 

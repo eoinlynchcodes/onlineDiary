@@ -8,12 +8,11 @@ exports.up = function(knex) {
   })
   .createTable('diaryEntry', table => {
       table.increments('id');
-      table.string('user').references('username').inTable('users');
-      table.string('dearDiary').notNullable();
+      table.string('userID').references('id').inTable('users');
+      table.string('dearDiary');
       table.string('whoItWasWith');
       table.string('whenItHappened');
   })
-
 };
 
 exports.down = function(knex) {

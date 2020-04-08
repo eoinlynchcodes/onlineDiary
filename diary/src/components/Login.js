@@ -21,6 +21,8 @@ export default function Login(){
         event.preventDefault();
         axios.post(`${loginURL}`, user)
         .then(response => {
+            debugger
+            console.log(response);
             localStorage.setItem('token', response.data.token)
             history.push('/diaryEntry')
         })
