@@ -23,7 +23,10 @@ export default function AddEntry(){
     const onSubmit = event => {
         event.preventDefault();
         console.log(diaryEntry);
-        axios.post(`${addToDiaryURL}`, diaryEntry)
+        axios.post(`${addToDiaryURL}`, diaryEntry, 
+        { 
+            headers: {Authorization: localStorage.getItem('token') } 
+        })
         .then(response => {
             console.log(localStorage);
         })
