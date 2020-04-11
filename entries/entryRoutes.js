@@ -18,6 +18,8 @@ router.get('/all', (req, res) => {
 
 router.post('/diaryentry', (req, res) => {
 let { userID, dearDiary, whoItWasWith, whenItHappened } = req.body;
+
+console.log(req.headers);
 entryHelpers.addEntry({
     userID,
     dearDiary,

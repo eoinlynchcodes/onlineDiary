@@ -7,6 +7,8 @@ http://localhost:8000/api/entries/diaryEntry
 
 Next Step:
 
+- Figure out why map function over the array isn't working. 
+
 - axios.post the diaryEntry. Make the user id dynamic and automatically post to the right user's DB depending on who is logged in. 
 
 -"Unable to map over undefined"... Find out why it is undefined.
