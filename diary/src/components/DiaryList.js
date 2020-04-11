@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-// import DiaryCard from './DiaryCard';
+import DiaryCard from './DiaryCard';
 
 export default function DiaryList(){
 
@@ -19,9 +19,11 @@ export default function DiaryList(){
     return(
         <div>
             {
-                diaryEntry.map(item => {
+                diaryEntry.map((item, key) => {
                   console.log(item); 
-                return<h1>{item.dearDiary}</h1>
+                return(
+                    <DiaryCard item={item} key={key}/>
+                );
                 })
             }
         </div>
